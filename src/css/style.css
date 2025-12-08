@@ -28,7 +28,7 @@ body {
     grid-template-rows: repeat(4, 1fr);
     gap: 5px;
     box-sizing: border-box;
-  cursor: url('../img/hummer.png') 3 13, pointer;
+    cursor: url('../img/hummer.png') 3 13, pointer;
 }
 
 .header {
@@ -61,7 +61,7 @@ body {
     align-items: center;
     border-radius: 5px;
     transition: background-color 0.3s ease;
-    cursor: pointer;
+    cursor: url('../img/hummer.png') 3 13, pointer;
 }
 
 .enemy, .enemy-death {

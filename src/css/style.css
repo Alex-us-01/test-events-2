@@ -9,9 +9,14 @@ body {
     font-family: Arial, sans-serif;
 }
 .game-arena {
-  display: flex;
-  flex-wrap: wrap;
-  width: calc(62px*4);
+    width: 420px;
+    height: 420px;
+    padding: 10px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(4, 1fr);
+    gap: 5px;
+    box-sizing: border-box;
   cursor: url('../img/hummer.png') 3 13, pointer;
 }
 

@@ -52,6 +52,6 @@ if (newGameButton) {
     lossesCount.textContent = '0';
     const pointsCount = document.getElementById('points-count');
     pointsCount.textContent = '0';
-    timerId = setInterval(gaming, 1000);
+    timerId = setInterval(gaming, 10000);
   });
 }

@@ -1,0 +1,19 @@
+.game-arena {
+  display: flex;
+  flex-wrap: wrap;
+  width: calc(62px*4);
+  cursor: url('../img/hummer.png') 3 13, pointer;
+}
+
+.game-cell {
+  border: 1px solid #000000;
+  width: 60px;
+  height: 66px;
+}
+
+.enemy {
+  width: 100%
+}
+
+.enemy-death {
+  width: 100%}

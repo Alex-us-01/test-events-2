@@ -7,32 +7,39 @@
   <title>Document</title>
 </head>
 <body>
-<div class="wrapper">
-  <div class="points">
-    <p>Попадания <span id="points-count">0</span></p>
-  </div>
-  <div class="losses">
-    <p>Промахи <span id="losses-count">0</span></p>
-  </div>
-</div>
-<button class="start-game" id="new-game-button" type="button">Начать игру</button>
-<div class="game-arena">
-  <div class="game-cell"></div>
-  <div class="game-cell"></div>
-  <div class="game-cell"></div>
-  <div class="game-cell"></div>
-  <div class="game-cell"></div>
-  <div class="game-cell"></div>
-  <div class="game-cell"></div>
-  <div class="game-cell"></div>
-  <div class="game-cell"></div>
-  <div class="game-cell"></div>
-  <div class="game-cell"></div>
-  <div class="game-cell"></div>
-  <div class="game-cell"></div>
-  <div class="game-cell"></div>
-  <div class="game-cell"></div>
-  <div class="game-cell"></div>
-</div>
+    <div class="game-container">
+        <header class="header">
+            <h2 class="header_title">Игра с гоблином</h2>
+            <p>Попаданий: <span class="dead">0</span></p>
+            <p>Пропусков: <span class="lost">0</span></p>
+        </header>
+
+        <div class="game-arena">
+            <div class="game-cell"></div>
+              <div class="game-cell"></div>
+              <div class="game-cell"></div>
+              <div class="game-cell"></div>
+              <div class="game-cell"></div>
+              <div class="game-cell"></div>
+              <div class="game-cell"></div>
+              <div class="game-cell"></div>
+              <div class="game-cell"></div>
+              <div class="game-cell"></div>
+              <div class="game-cell"></div>
+              <div class="game-cell"></div>
+              <div class="game-cell"></div>
+              <div class="game-cell"></div>
+              <div class="game-cell"></div>
+              <div class="game-cell"></div>
+              <div class="game-cell"></div>             
+
+        </div>
+        
+        <div class="game-field" id="gameField"></div>
+        <div class="result-box">
+            <p>Результат: <span class="result">0</span></p>
+
+        </div>
+    </div>
 </body>
 </html>

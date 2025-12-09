@@ -62,7 +62,6 @@
 //   });
 // }
 
-
 import makeEnemy from './character';
 import makeEnemyDeath from './character';
 import randomNumber from './random-number';
@@ -71,61 +70,72 @@ import goblinImage from '../img/goblin.png';
 
 let enemy;
 let enemyDeath;
+let timerId;
 
 export function initGame() {
   enemyDeath = makeEnemyDeath(goblinDeathImage);
   enemy = makeEnemy(goblinImage);
 
-  let timerId;
-
-  function gameOver() {
-    if (!(document.querySelectorAll('.enemy').length === 0)) {
-      const lossesCount = document.getElementById('losses-count');
-      lossesCount.textContent = 1 + Number(lossesCount.textContent);
-
-      if (Number(lossesCount.textContent) >= 5) {
-        enemy.remove();
-        const resultSpan = document.querySelector('.result');
-        resultSpan.textContent = 'Игра окончена';
-        clearInterval(timerId);
-        return 1;
-      }
-    }
-    return null;
-  }
-
-  function gaming() {
-    if (gameOver() === 1) {
-      const resultSpan = document.querySelector('.result');
-      if (resultSpan) {
-        resultSpan.textContent = 'Проигрыш';
-      }
-      return;
-    }
-
-    const deathFace = document.getElementById('enemy-death-face');
-    const arena = Array.from(document.getElementsByClassName('game-cell'));
-    let randomCell = randomNumber(0, arena.length - 1);
-
-    while (arena[randomCell].childElementCount === 1) {
-      randomCell = randomNumber(0, arena.length - 1);
-    }
-
-    arena[randomCell].insertAdjacentElement('afterbegin', enemy);
-
-    if (deathFace === enemyDeath) {
-      deathFace.remove();
-    }
-  }
-
   const newGameButton = document.getElementById('new-game-button');
+  
   if (newGameButton) {
     newGameButton.addEventListener('click', () => {
-      const lossesCount = document.getElementById('losses-count');
-      lossesCount.textContent = '0';
-      const pointsCount = document.getElementById('points-count');
-      pointsCount.textContent = '0';
-      timerId = setInterval(gaming, 1000);
+      startGame();
     });
+  }
+}
+
+function startGame() {
+  const lossesCount = document.getElementById('losses-count');
+  lossesCount.textContent = '0';
+  
+  const pointsCount = document.getElementById('points-count');
+  pointsCount.textContent = '0';
+  
+  timerId = setInterval(gaming, 1000);
+  
+  // Добавляем обработчик кликов
+  import('./character').then(module => {
+    module.setupClickHandler(enemy, enemyDeath);
+  });
+}
+
+function gameOver() {
+  if (document.querySelectorAll('.enemy').length > 0) {
+    const lossesCount = document.getElementById('losses-count');
+    lossesCount.textContent = 1 + Number(lossesCount.textContent);
+
+    if (Number(lossesCount.textContent) >= 5) {
+      enemy.remove();
+      const resultSpan = document.querySelector('.result');
+      resultSpan.textContent = 'Игра окончена';
+      clearInterval(timerId);
+      return true;
+    }
+  }
+  return false;
+}
+
+function gaming() {
+  if (gameOver()) {
+    const resultSpan = document.querySelector('.result');
+    if (resultSpan) {
+      resultSpan.textContent = 'Проигрыш';
+    }
+    return;
+  }
+
+  const deathFace = document.getElementById('enemy-death-face');
+  const arena = Array.from(document.getElementsByClassName('game-cell'));
+  let randomCell = randomNumber(0, arena.length - 1);
+
+  while (arena[randomCell].childElementCount === 1) {
+    randomCell = randomNumber(0, arena.length - 1);
+  }
+
+  arena[randomCell].insertAdjacentElement('afterbegin', enemy);
+
+  if (deathFace === enemyDeath) {
+    deathFace.remove();
   }
 }

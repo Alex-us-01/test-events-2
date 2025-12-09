@@ -12,12 +12,16 @@ let timerId;
 export function gameOver() {
   if (!(document.querySelectorAll('.enemy').length === 0)) {
     const lossesCount = document.getElementById('losses-count');
-    lossesCount.textContent = 1 + Number(lossesCount.textContent);
+    lossesCount.textContent = 1 + Number(lossesCount.textContent); //Добавить обработку значений для записи р окно результата
 
     if (Number(lossesCount.textContent) >= 5) {
       enemy.remove();
       // eslint-disable-next-line no-alert
-      alert('GameOver');
+    //   alert('GameOver');
+        const resultSpan = document.querySelector('.result');
+        resultSpan.textContent = 'Игра окончена';
+
+
       clearInterval(timerId);
       return 1;
     }
@@ -27,6 +31,10 @@ export function gameOver() {
 
 function gaming() {
   if (gameOver() === 1) {
+    const resultSpan = document.querySelector('.result');
+    if (resultSpan) {
+      resultSpan.textContent = 'Проигрыш'
+    }
     return;
   }
 

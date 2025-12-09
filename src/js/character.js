@@ -16,7 +16,7 @@ const clickOnGoblin = (event) => {
 
 arena.addEventListener('click', clickOnGoblin);
 
-export default function makeEnemyDeath(img) {
+export function makeEnemyDeath(img) {
   const image = document.createElement('img');
   image.src = img;
   image.className = 'enemy-death';
@@ -24,7 +24,7 @@ export default function makeEnemyDeath(img) {
   return image;
 }
 
-export default function makeEnemy(img) {
+export function makeEnemy(img) {
   const image = document.createElement('img');
   image.src = img;
   image.className = 'enemy';
